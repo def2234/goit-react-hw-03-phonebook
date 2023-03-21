@@ -10,17 +10,20 @@ export class App extends Component {
     filter: '',
   };
 
-  // componentDidUpdate(prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
-  // componentDidMount() {
-  //   const cocntacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(cocntacts);
-  //   this.setState({ contacts: parsedContacts });
-  // }
+  componentDidMount() {
+    const cocntacts = localStorage.getItem('contacts');
+
+    const parsedContacts = JSON.parse(cocntacts);
+    if (parsedContacts !== null) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
 
   createContact = data => {
     const toFind = data.name.toLowerCase();
