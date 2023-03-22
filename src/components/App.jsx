@@ -10,9 +10,11 @@ export class App extends Component {
     filter: '',
   };
 
-  componentDidUpdate(prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+
+    if (prevState.contacts.length !== contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }
 
